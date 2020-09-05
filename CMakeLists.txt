@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 
 project(ErrorRate CXX)
 
-option(EXE_TESTING "Включить модульное тестирование" OFF)
+option(EXE_TESTING "Включить модульное тестирование" ON)
 
 if (EXE_TESTING)
     find_package(GTest REQUIRED)
@@ -28,7 +28,7 @@ else ()
     target_compile_options(${PROJECT_NAME}  PRIVATE
         -Wall -Wextra -pedantic -g3 -Wpointer-arith -Werror -pedantic-errors
     )
-    target_compile_options(errorRate  PRIVATE
+    target_compile_options(errorRateLib  PRIVATE
         -Wall -Wextra -pedantic -g3 -Wpointer-arith -Werror -pedantic-errors
     )
 endif()
