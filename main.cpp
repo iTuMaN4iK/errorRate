@@ -25,7 +25,7 @@ int main() {
     if (command.compare("set") == 0) {
       Frames f;
       uint64_t time{};
-      std::cin >> time >> f.frames >> f.lost_frames;
+      std::cin >> time >> f;
       er.setCurrent(time, f);
     } else if (command.compare("get") == 0) {
       uint64_t duration{};
