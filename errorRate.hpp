@@ -11,7 +11,7 @@
 #pragma once
 #include <cstdint>
 #include <map>
-
+#include <iostream>
 struct Frames {
   uint64_t frames = 0;
   uint64_t lost_frames = 0;
@@ -24,7 +24,7 @@ std::istream& operator>>(std::istream& is, Frames& fr);
  * @param next Следующий frame
  * @return float
  */
-float getErrorRateIntervals(const Frames& last, const Frames& next);
+double getErrorRateIntervals(const Frames& last, const Frames& next);
 
 class ErrorRate {
  public:
@@ -42,7 +42,7 @@ class ErrorRate {
    * @param duration
    * @return float
    */
-  float getErrorRate(uint32_t duration = 0) const;
+  double getErrorRate(uint32_t duration = 0) const;
 
  private:
   std::map<uint64_t, Frames> mErrorRate;  //<! Карта для хранения пары время и error rate

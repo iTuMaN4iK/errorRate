@@ -1,12 +1,16 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.0.2)
 
 project(ErrorRate CXX)
 
-find_package(GTest REQUIRED)
+option(EXE_TESTING "Включить модульное тестирование" OFF)
+
+if (EXE_TESTING)
+    find_package(GTest REQUIRED)
+endif()
 
 add_executable(${PROJECT_NAME} main.cpp)
-add_library(errorRate errorRate.cpp)
-target_link_libraries(${PROJECT_NAME} errorRate)
+add_library(errorRateLib errorRate.cpp)
+target_link_libraries(${PROJECT_NAME} errorRateLib)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     CXX_STANDARD 17
@@ -17,7 +21,7 @@ if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE
         /W4
     )
-    target_compile_options(errorRate PRIVATE
+    target_compile_options(errorRateLib PRIVATE
         /W4
     )
 else ()
@@ -29,7 +33,6 @@ else ()
     )
 endif()
 
-option(EXE_TESTING "Включить модульное тестирование" ON)
 
 if(NOT EXE_TESTING)
     message(STATUS "Тестирование проекта ${PROJECT_NAME} выключено")
